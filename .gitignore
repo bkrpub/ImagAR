@@ -1,0 +1,36 @@
+
+Preview.html
+screenshots
+SnapshotHelper2-3.swift
+
+Generated
+report.xml
+*.mobileprovision
+
+# xcode noise
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# xcode 4
+xcuserdata
+
+# vc directories
+.svn
+.git
+.hg
+
+# osx noise
+.DS_Store
+profile
+
+# emacs noise
+*~
+*#
+\#*
+.#*
+
+# vi noise 
+.*.swp
+
