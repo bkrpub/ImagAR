@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let configuration = ARWorldTrackingSessionConfiguration()
+        let configuration = ARWorldTrackingConfiguration()
 		//configuration.planeDetection = .horizontal
 		
 		sceneView.session.delegate = self
@@ -101,12 +101,14 @@ extension ViewController {
 		let location = sender.location(in: sceneView)
 		print("tap", location)
 		
+		#if false
 		guard let currentFrame = sceneView.session.currentFrame else {
 			print("no currentFrame")
 			return
 		}
+		#endif
 		
-		print("rawPoints", currentFrame.rawFeaturePoints?.count ?? -1)
+		// print("rawPoints", currentFrame.rawFeaturePoints?.count ?? -1)
 
 		guard var pointsInSceneView = lastPointsInSceneView else {
 			print("no lastPoints")
@@ -163,7 +165,7 @@ extension ViewController : ARSessionDelegate {
 					
 			let viewPortSize = shapeLayer.bounds.size
 			
-			let displayTransform = frame.displayTransform(withViewportSize: viewPortSize, orientation: .portrait)
+			let displayTransform = frame.displayTransform(for: .portrait, viewportSize: viewPortSize)
 			
 			let flipTransform = CGAffineTransform(translationX: 0, y: 1).scaledBy(x: 1, y: -1)
 			
@@ -172,7 +174,7 @@ extension ViewController : ARSessionDelegate {
 			let normalizedToViewPortTransform = flipTransform.concatenating(displayTransform).concatenating(toViewPortTransform)
 			
 			let orientation : CGImagePropertyOrientation = .up
-			let handler = VNImageRequestHandler(ciImage: image, orientation: Int32(orientation.rawValue))
+			let handler = VNImageRequestHandler(ciImage: image, orientation: orientation)
 			
 			visionRequestInProgress = true
 			
