@@ -106,9 +106,9 @@ extension ViewController {
 			print("no currentFrame")
 			return
 		}
-		#endif
 		
-		// print("rawPoints", currentFrame.rawFeaturePoints?.count ?? -1)
+		print("rawPoints", currentFrame.rawFeaturePoints?.points.count ?? -1)
+		#endif
 
 		guard var pointsInSceneView = lastPointsInSceneView else {
 			print("no lastPoints")
